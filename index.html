@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZAMIN GRAND — Me’moriy Butik Mehmonxona, Qavat Rejasi va Onlayn Band Qilish</title>
+    <meta name="description" content="Samarqand markazidagi zamonaviy me’moriy mehmonxona. Qavatlar bo‘yicha interaktiv xona tanlash, termal SPA, promo-kodli jonli kalkulyator va onlayn bron savati." />
+    <meta property="og:title" content="ZAMIN GRAND — Me’moriy Mehmonxona va SPA" />
+    <meta property="og:description" content="Qavat sxemasi, xonalarni taqqoslash, qo‘shimcha xizmatlar va tezkor bron vaucheri." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="icon" type="img" href="https://icons.iconarchive.com/icons/iconarchive/essential-buildings/128/Police-Station-icon.png">
+  </head>
+  <body>
+    <div id="loader" class="arch-preloader">
+      <div class="arch-grid-overlay"></div>
+      <div class="arch-preloader-card">
+        <svg viewBox="0 0 280 200" fill="none" class="preloader-svg" aria-hidden="true">
+          <circle cx="140" cy="100" r="84" stroke="rgba(255,255,255,0.12)" stroke-width="1" stroke-dasharray="4 6" class="spin-slow" />
+          <circle cx="140" cy="100" r="64" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1.2" class="draw-stroke" />
+          <path d="M96 154V88C96 62 114 44 140 36C166 44 184 62 184 88V154" stroke="#FFFFFF" stroke-width="2.2" class="draw-stroke" />
+          <path d="M112 154V94C112 75 123 63 140 57C157 63 168 75 168 94V154" stroke="#3B82F6" stroke-width="1.6" class="draw-stroke delay-sm" />
+          <line x1="72" y1="154" x2="208" y2="154" stroke="#F59E0B" stroke-width="2" stroke-linecap="square" />
+          <g class="float-emblem">
+            <rect x="132" y="84" width="16" height="16" transform="rotate(45 140 92)" stroke="#F59E0B" stroke-width="2" fill="#0B132B" />
+            <circle cx="140" cy="95" r="3" fill="#FFFFFF" />
+          </g>
+        </svg>
+        <div class="font-display loader-wordmark">ZAMIN GRAND</div>
+        <p id="loaderStage" class="loader-stage-text">Me’moriy qabulxona tizimi yuklanmoqda...</p>
+        <div class="loader-meter">
+          <div class="loader-rail"><div id="loaderBar" class="loader-progress"></div></div>
+          <span id="loaderPct" class="font-mono-num loader-pct-val">0%</span>
+        </div>
+        <button id="skipLoader" type="button" class="loader-skip-btn">Darhol kirish</button>
+      </div>
+    </div>
+
+    <div id="scrollProgress" class="top-progress"></div>
+
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <a href="#sahna" class="brand-mark">
+          <svg viewBox="0 0 48 48" fill="none" class="brand-svg" aria-hidden="true">
+            <rect x="2" y="2" width="44" height="44" rx="4" fill="#0B132B" />
+            <path d="M11 37V22C11 14.8 16.5 10.5 24 8.5C31.5 10.5 37 14.8 37 22V37" stroke="#F59E0B" stroke-width="2.2" />
+            <path d="M17 37V24C17 19.8 19.8 17 24 15.8C28.2 17 31 19.8 31 24V37" stroke="#60A5FA" stroke-width="1.6" />
+            <rect x="21" y="22" width="6" height="6" transform="rotate(45 24 25)" fill="#FFFFFF" />
+            <line x1="9" y1="37" x2="39" y2="37" stroke="#FFFFFF" stroke-width="1.6" />
+          </svg>
+          <span class="font-display brand-name">ZAMIN GRAND</span>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="#xonalar">Qavatlar va Xonalar</a>
+          <a href="#imtiyozlar">Maxsus To‘plamlar</a>
+          <a href="#galereya">Galereya</a>
+          <a href="#bron">Band Qilish</a>
+        </nav>
+
+        <button id="openBasketBtn" type="button" class="basket-trigger">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 9h16l-1.4 11H5.4L4 9z"/><path d="M8.5 9V6.5a3.5 3.5 0 0 1 7 0V9"/></svg>
+          <span>Savat</span>
+          <span id="basketBadge" class="font-mono-num basket-num">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="sahna" class="hero-stage">
+        <div class="hero-split-box">
+          <div class="hero-command">
+            <div class="hero-command-top">
+              <p class="hero-eyebrow">Samarqand · Bog‘ishamol 28 · 5 Yulduzli Me’moriy Majmua</p>
+              <h1 class="font-display hero-title">Har bir qavatda sokin hashamat va jonli shahar manzarasi.</h1>
+              <p class="hero-copy">
+                Qavat sxemasi orqali o‘zingizga mos qanotni tanlang, sanalarni belgilang va promo-kod yordamida tezkor onlayn bron vaucherini oling.
+              </p>
+            </div>
+
+            <form id="heroSearchForm" class="hero-booking-matrix">
+              <div class="hm-grid">
+                <div class="hm-field">
+                  <label for="heroCheckIn">Kirish sanasi</label>
+                  <input id="heroCheckIn" type="date" required class="hm-input font-mono-num" />
+                </div>
+                <div class="hm-field">
+                  <label for="heroCheckOut">Chiqish sanasi</label>
+                  <input id="heroCheckOut" type="date" required class="hm-input font-mono-num" />
+                </div>
+                <div class="hm-field">
+                  <label for="heroGuests">Mehmonlar soni</label>
+                  <select id="heroGuests" class="hm-input">
+                    <option value="all">Istalgan sig‘im</option>
+                    <option value="2">1–2 nafar</option>
+                    <option value="3">3–4 nafar</option>
+                    <option value="5">5+ nafar (Oila)</option>
+                  </select>
+                </div>
+                <div class="hm-field">
+                  <label for="heroPromo">Promo-kod (masalan: SAMARQAND10)</label>
+                  <input id="heroPromo" type="text" placeholder="SAMARQAND10" class="hm-input font-mono-num" />
+                </div>
+              </div>
+              <div class="hm-actions">
+                <button type="submit" class="btn-cobalt">
+                  <span>Bo‘sh xonalarni topish</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </button>
+                <p id="staySummaryNote" class="hm-summary font-mono-num"></p>
+              </div>
+            </form>
+          </div>
+
+          <div class="hero-gallery-pane">
+            <img id="heroSlideImg" src="images/hotel_hero_atrium_1795105940691.jpg" referrerpolicy="no-referrer" alt="Zamin Grand hovlisi va suv havzasi" />
+            <div class="hero-scrim"></div>
+            <div class="hero-gallery-hud">
+              <div>
+                <p id="heroSlideTag" class="hg-tag">01 / Markaziy Atriyum</p>
+                <h2 id="heroSlideTitle" class="font-display hg-title">Travertin hovli va tinch aks suv havzasi</h2>
+              </div>
+              <div id="heroSlideDots" class="hg-switcher"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-strip">
+          <div class="shell kpi-grid">
+            <div class="kpi-cell">
+              <span>Qavat va Xonalar</span>
+              <strong class="font-mono-num">8 qavat · 48 xona · 42–185 m²</strong>
+            </div>
+            <div class="kpi-cell">
+              <span>Termal SPA & Basseyn</span>
+              <strong class="font-mono-num">34°C yopiq hovuz · Bepul kirish</strong>
+            </div>
+            <div class="kpi-cell">
+              <span>Promo Chegirma</span>
+              <strong class="font-mono-num">SAMARQAND10 (-10% faol)</strong>
+            </div>
+            <div class="kpi-cell">
+              <span>Bekor Qilish Siyosati</span>
+              <strong class="font-mono-num">24 soat oldin jarimasiz</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="xonalar" class="arch-section bg-surface">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">01. Interaktiv Qavat Rejasi va Kolleksiya</p>
+              <h2 class="font-display section-title">Binodan qavatni tanlang va xona loyihasini ko‘ring</h2>
+            </div>
+            <div class="head-tools">
+              <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.8-3.8"/></svg>
+                <input id="roomSearch" type="text" placeholder="Xona, manzara yoki to‘shak..." class="input-square search-offset" />
+              </div>
+              <select id="sortSelect" aria-label="Saralash" class="input-square">
+                <option value="default">Tavsiya tartibida</option>
+                <option value="price-asc">Arzondan qimmatga</option>
+                <option value="price-desc">Qimmatdan arzonga</option>
+                <option value="size-desc">Keng maydon (m²)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="architect-layout">
+            <aside class="building-sidebar">
+              <div class="blueprint-box">
+                <div class="bp-head">
+                  <span class="font-mono-num">Bino kesimi · Qavat tanlang</span>
+                  <button id="floorResetBtn" type="button" class="bp-reset">Barchasi</button>
+                </div>
+                <div id="floorDiagram" class="floor-diagram"></div>
+              </div>
+
+              <div class="filter-panel">
+                <div class="fp-block">
+                  <div class="fp-row">
+                    <label for="priceSlider">Maksimal tunlik narx</label>
+                    <strong id="priceSliderVal" class="font-mono-num">6 500 000</strong>
+                  </div>
+                  <input id="priceSlider" type="range" min="1500000" max="6500000" step="250000" value="6500000" class="range-input" />
+                </div>
+
+                <div class="fp-block">
+                  <label for="guestFilter">Mehmonlar sig‘imi</label>
+                  <select id="guestFilter" class="input-square w-full">
+                    <option value="all">Barcha xonalar</option>
+                    <option value="2">2 nafargacha</option>
+                    <option value="3">3–4 nafar</option>
+                    <option value="5">5+ nafar (Oila va guruh)</option>
+                  </select>
+                </div>
+
+                <label class="chk-line">
+                  <input id="balconyOnlyChk" type="checkbox" />
+                  <span>Faqat shaxsiy balkon / terrasali</span>
+                </label>
+              </div>
+            </aside>
+
+            <div class="rooms-column">
+              <div id="roomsList" class="rooms-stack"></div>
+              <div id="roomsEmpty" class="empty-panel hidden">
+                <h3>Tanlangan qavat yoki filtrlar bo‘yicha xona topilmadi</h3>
+                <p>Barcha qavatlarni yoqib, to‘liq xonalar ro‘yxatiga qaytishingiz mumkin.</p>
+                <button id="resetAllFiltersBtn" type="button" class="btn-cobalt" style="margin-top:14px;">Filtrlarni tozalash</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="imtiyozlar" class="arch-section bg-white">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">02. Tayyor Dam Olish To‘plamlari</p>
+              <h2 class="font-display section-title">Xona, SPA va kechki ovqat jamlangan foydali paketlar</h2>
+            </div>
+            <p class="head-note">Alohida xizmatlardan ko‘ra 18% gacha tejamkor bo‘lgan tayyor mehmonxona to‘plamlarini tanlang.</p>
+          </div>
+
+          <div id="packagesGrid" class="packages-grid"></div>
+        </div>
+      </section>
+
+      <section id="xizmatlar" class="arch-section bg-surface">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">03. Sayohat Rejasi Konstruktori</p>
+              <h2 class="font-display section-title">Dam olishingizga qulaylik va xizmatlarni bir klikda qo‘shing</h2>
+            </div>
+            <p class="head-note">Har bir hududni ko‘zdan kechirib, qo‘shimcha xizmatlarni to‘g‘ridan-to‘g‘ri bron savatiga biriktiring.</p>
+          </div>
+
+          <div id="bentoGrid" class="bento-showcase"></div>
+        </div>
+      </section>
+
+      <section id="galereya" class="arch-section bg-white">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">04. Me’moriy Galereya</p>
+              <h2 class="font-display section-title">Ichki hovli, termal suvlar va yorug‘ interyerlar</h2>
+            </div>
+            <div id="galleryTabs" class="gal-tabs"></div>
+          </div>
+
+          <div id="galleryGrid" class="gallery-grid"></div>
+        </div>
+      </section>
+
+      <section id="taqqoslash" class="arch-section bg-surface">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">05. Ikki Xonani Aniq Taqqoslash</p>
+              <h2 class="font-display section-title">Qavat, maydon, reja va narxlar matritsasi</h2>
+            </div>
+            <div class="cmp-controls">
+              <select id="cmpSelectA" aria-label="1-xona" class="input-square"></select>
+              <span class="cmp-vs font-mono-num">VS</span>
+              <select id="cmpSelectB" aria-label="2-xona" class="input-square"></select>
+            </div>
+          </div>
+
+          <div id="compareSheet" class="compare-frame"></div>
+        </div>
+      </section>
+
+      <section id="dastur" class="arch-section bg-white">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">06. Kun Tartibi va Shahar Masofalari</p>
+              <h2 class="font-display section-title">Zamin Grand’dagi bir kun va Samarqand yo‘nalishlari</h2>
+            </div>
+            <p class="head-note">Tongdan kechgacha mehmonxona ichidagi tartib hamda diqqatga sazovor joylargacha qulay vaqtlar.</p>
+          </div>
+
+          <div class="itinerary-split">
+            <div class="timeline-card">
+              <div class="tl-head">
+                <strong class="font-display" style="font-size:24px;">Mehmonxonada Kun Tartibi</strong>
+                <span class="font-mono-num" style="font-size:12px;color:var(--amber);">07:00 – 23:00</span>
+              </div>
+              <div id="timelineList" class="timeline-list"></div>
+            </div>
+
+            <div class="landmarks-card">
+              <div class="lm-head">
+                <strong class="font-display" style="font-size:24px;">Asosiy Manzillargacha Masofa</strong>
+                <span class="font-mono-num" style="font-size:12px;color:var(--ink-muted);">Bog‘ishamol 28 dan</span>
+              </div>
+              <div id="landmarksList" class="landmarks-list"></div>
+              <div class="lm-foot">
+                <span>Shaxsiy elektromobil transferi kerakmi?</span>
+                <button id="addConciergeTransferBtn" type="button" class="btn-cobalt" style="min-height:40px;padding:8px 16px;font-size:13px;">Transferni savatga qo‘shish</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="fikrlar" class="arch-section bg-surface">
+        <div class="shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">07. Tasdiqlangan Mehmon Fikrlari</p>
+              <h2 class="font-display section-title">Mehmonlarimiz Zamin Grand haqida nima deydi</h2>
+            </div>
+            <div class="rating-summary">
+              <strong class="font-mono-num">9.9 / 10</strong>
+              <span>340+ rasmiy mehmon bahosi asosida</span>
+            </div>
+          </div>
+
+          <div class="reviews-layout">
+            <div id="ratingBars" class="rating-bars-panel"></div>
+            <div id="reviewsGrid" class="reviews-grid"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="bron" class="arch-section bg-white">
+        <div class="shell booking-split">
+          <div class="book-form-box">
+            <p class="eyebrow">08. Rasmiy Band Qilish Arizasi</p>
+            <h2 class="font-display" style="font-size:clamp(30px,3.2vw,42px);line-height:1.05;margin-top:6px;">Xonani kafolatlangan narxda band qiling</h2>
+            <p style="margin-top:8px;font-size:14px;color:var(--ink-muted);">Oldindan karta yechilmaydi — tasdiqlangan vaucher bir necha soniyada shakllanadi.</p>
+
+            <form id="directBookForm" style="margin-top:24px;">
+              <div class="form-pair">
+                <div class="f-group">
+                  <label for="bkName">Mehmon ismi va familiyasi</label>
+                  <input id="bkName" required type="text" placeholder="Jasur Alimov" class="input-square w-full" />
+                </div>
+                <div class="f-group">
+                  <label for="bkPhone">Aloqa telefoni</label>
+                  <input id="bkPhone" required type="tel" placeholder="+998 90 123 45 67" class="input-square w-full" />
+                </div>
+              </div>
+
+              <div class="form-pair">
+                <div class="f-group">
+                  <label for="bkRoom">Xona toifasi</label>
+                  <select id="bkRoom" class="input-square w-full"></select>
+                </div>
+                <div class="f-group">
+                  <label for="bkMeal">Ovqatlanish turi</label>
+                  <select id="bkMeal" class="input-square w-full">
+                    <option value="0">Faqat xona (0 so‘m)</option>
+                    <option value="180000" selected>Shved stoli nonushta (+180 000 / tun)</option>
+                    <option value="490000">Nonushta va kechki ovqat (+490 000 / tun)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-triple">
+                <div class="f-group">
+                  <label for="bkDate">Kirish sanasi</label>
+                  <input id="bkDate" required type="date" class="input-square w-full font-mono-num" />
+                </div>
+                <div class="f-group">
+                  <label for="bkNights">Tunlar soni</label>
+                  <input id="bkNights" type="number" min="1" max="30" value="3" class="input-square w-full font-mono-num" />
+                </div>
+                <div class="f-group">
+                  <label for="bkPromo">Promo-kod</label>
+                  <input id="bkPromo" type="text" placeholder="SAMARQAND10" class="input-square w-full font-mono-num" />
+                </div>
+              </div>
+
+              <label class="chk-line" style="margin-top:6px;">
+                <input id="bkTransfer" type="checkbox" />
+                <span>Aeroportdan biznes-klass kutib olish (+280 000 so‘m)</span>
+              </label>
+
+              <div class="f-group" style="margin-top:14px;">
+                <label for="bkNote">Qo‘shimcha istaklar</label>
+                <input id="bkNote" type="text" placeholder="Yuqori qavat, tinch burchak yoki kechki kirish..." class="input-square w-full" />
+              </div>
+
+              <div class="book-btn-row">
+                <button type="submit" class="btn-cobalt" style="flex:1;">Bronni tasdiqlash</button>
+                <button id="bkSaveBasketBtn" type="button" class="btn-line">Savatga o‘tkazish</button>
+              </div>
+            </form>
+
+            <div id="directSuccess" class="voucher-panel hidden">
+              <div class="voucher-top">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+                <span id="voucherCode">Bron #ZG-2026-0000 tasdiqlandi</span>
+              </div>
+              <p id="voucherText" style="margin-top:8px;font-size:13px;color:var(--ink-muted);"></p>
+              <button id="bkResetBtn" type="button" class="link-reset">Yangi bron kiritish</button>
+            </div>
+          </div>
+
+          <div class="ledger-col">
+            <div class="ledger-card">
+              <div class="ledger-head">
+                <p class="eyebrow" style="color:#F59E0B;">Jonli Hisob Varaqasi</p>
+                <h3 id="estRoomTitle" class="font-display" style="font-size:28px;color:#FFFFFF;margin-top:4px;">Deluxe Bog‘ Xonasi</h3>
+              </div>
+              <div id="estBreakdown" class="ledger-rows"></div>
+              <div class="ledger-total">
+                <span>Jami yakuniy to‘lov</span>
+                <strong id="estTotalVal" class="font-mono-num">0 so‘m</strong>
+              </div>
+            </div>
+
+            <div style="margin-top:26px;">
+              <p class="eyebrow">Qabulxona Javoblari (FAQ)</p>
+              <div id="faqList" class="faq-stack"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="navy-footer">
+      <div class="shell">
+        <div class="footer-columns">
+          <div>
+            <a href="#sahna" class="footer-logo">
+              <svg viewBox="0 0 48 48" fill="none" class="footer-svg" aria-hidden="true">
+                <rect x="2" y="2" width="44" height="44" rx="4" fill="#16213E" stroke="#F59E0B" stroke-opacity="0.45" stroke-width="1.2" />
+                <path d="M11 37V22C11 14.8 16.5 10.5 24 8.5C31.5 10.5 37 14.8 37 22V37" stroke="#F59E0B" stroke-width="2.2" />
+                <path d="M17 37V24C17 19.8 19.8 17 24 15.8C28.2 17 31 19.8 31 24V37" stroke="#60A5FA" stroke-width="1.6" />
+                <rect x="21" y="22" width="6" height="6" transform="rotate(45 24 25)" fill="#FFFFFF" />
+              </svg>
+              <div>
+                <strong class="font-display f-title">ZAMIN GRAND</strong>
+                <span class="f-sub">Me’moriy Butik Mehmonxona va SPA</span>
+              </div>
+            </a>
+            <p class="f-about">
+              Har bir qavati o‘ziga xos me’moriy yechimga ega zamonaviy shahar kurorti. Shaffof tariflar, termal suv va shaxsiy servis.
+            </p>
+            <div class="f-social-row">
+              <a href="#bron" class="f-soc-btn" aria-label="Telegram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 4L2 11.5l6.5 2.3L18 7l-7.2 8.2 5.4 4.1L21 4z"/></svg>
+              </a>
+              <a href="#bron" class="f-soc-btn" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+              </a>
+              <a href="#bron" class="f-soc-btn" aria-label="Aloqa">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="f-head">Qavatlar va Qanotlar</h4>
+            <ul class="f-list">
+              <li><a href="#xonalar" data-f-wing="villa">1-qavat Bog‘ Villalari</a></li>
+              <li><a href="#xonalar" data-f-wing="classic">2–3-qavat Classic Qanot</a></li>
+              <li><a href="#xonalar" data-f-wing="suite">4–7-qavat Panorama Suitlar</a></li>
+              <li><a href="#xonalar" data-f-wing="penthouse">8-qavat Prezident Penthouse</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="f-head">Xizmatlar</h4>
+            <ul class="f-list">
+              <li><a href="#xizmatlar">Termal SPA va Hammom</a></li>
+              <li><a href="#xizmatlar">Tomdagi Kechki Restoran</a></li>
+              <li><a href="#xizmatlar">Aeroport VIP Transfer</a></li>
+              <li><a href="#taqqoslash">Xonalarni Taqqoslash</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="f-head">Qabulxona 24/7</h4>
+            <div class="f-contact-list">
+              <div class="f-c-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5a7 7 0 1 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                <span>Samarqand sh., Bog‘ishamol 28</span>
+              </div>
+              <div class="f-c-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+                <span class="font-mono-num">+998 66 230 88 00</span>
+              </div>
+              <div class="f-c-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+                <span class="font-mono-num">qabul@zamingrand.uz</span>
+              </div>
+              <div class="f-c-row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                <span>Kirish: 14:00 · Chiqish: 12:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-trust-strip">
+          <div class="ft-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7.5 3v5.5c0 4.8-3.2 8.9-7.5 10-4.3-1.1-7.5-5.2-7.5-10V6L12 3z"/><path d="M9 12.3l2 2 4-4.2"/></svg>
+            <div>
+              <strong>Rasmiy eng arzon tarif kafolati</strong>
+              <span>Vositachilarsiz to‘g‘ridan-to‘g‘ri mehmonxona narxi</span>
+            </div>
+          </div>
+          <div class="ft-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <div>
+              <strong>Jarimasiz sana almashtirish</strong>
+              <span>Kelishdan 24 soat oldin sanalarni bepul o‘zgartirish</span>
+            </div>
+          </div>
+          <div class="ft-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.6 6.4 6.9.5-5.2 4.5 1.6 6.8L12 16.5 6.1 20.2l1.6-6.8L2.5 8.9l6.9-.5L12 2z"/></svg>
+            <div>
+              <strong>SAMARQAND10 promo dasturi</strong>
+              <span>Sayt orqali bronda 10% doimiy chegirma</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <p class="f-copyright">© 2026 ZAMIN GRAND. Barcha huquqlar himoyalangan.</p>
+          <div class="f-bottom-btns">
+            <button id="replayLoaderBtn" type="button" class="f-act-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+              <span>Loadingni ko‘rish</span>
+            </button>
+            <button id="scrollTopBtn" type="button" class="f-act-btn">
+              <span>Yuqoriga</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="roomModal" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-label="Xona pasporti">
+      <div id="roomModalContent" class="modal-sheet"></div>
+    </div>
+
+    <div id="photoLightbox" class="overlay-modal hidden" role="dialog" aria-modal="true" aria-label="Galereya surati">
+      <div id="lightboxContent" class="lightbox-card"></div>
+    </div>
+
+    <div id="basketDrawer" class="overlay-drawer hidden" role="dialog" aria-modal="true" aria-label="Bron savati">
+      <aside class="drawer-sheet">
+        <div class="drawer-top">
+          <div>
+            <h3 class="font-display" style="font-size:26px;line-height:1;">Bron Savati</h3>
+            <p style="font-size:12px;color:var(--ink-muted);">Xonalar, tunlar va tanlangan servislar</p>
+          </div>
+          <button id="closeBasketBtn" type="button" class="icon-close" aria-label="Yopish">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+          </button>
+        </div>
+
+        <div id="basketBody" class="drawer-scroll"></div>
+
+        <form id="checkoutForm" class="drawer-checkout hidden">
+          <div class="dc-summary">
+            <span>Umumiy qiymat:</span>
+            <strong id="basketTotal" class="font-mono-num">0 so‘m</strong>
+          </div>
+          <input required id="chkName" type="text" placeholder="Mehmon F.I.Sh." class="input-square w-full" />
+          <div class="form-pair" style="gap:8px;">
+            <input required id="chkPhone" type="tel" placeholder="+998 90 ..." class="input-square w-full" />
+            <select id="chkPay" class="input-square w-full">
+              <option value="Mehmonxonada to‘lash">Mehmonxonada</option>
+              <option value="Payme / Click / Karta">Onlayn karta</option>
+              <option value="Hisob-faktura">Korporativ</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-cobalt" style="width:100%;">Bronni rasmiylashtirish</button>
+        </form>
+      </aside>
+    </div>
+
+    <script defer src="src/main.js"></script>
+  </body>
+</html>
